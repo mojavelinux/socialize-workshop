@@ -45,7 +45,7 @@ public class RegistrationWebTest {
         return ShrinkWrap.create(WebArchive.class, "registration.war")
             .addPackage(Registration.class.getPackage())
             .addPackage(Member.class.getPackage())
-            .addPackage(PersistenceContextProducers.class.getPackage())
+            .addPackages(true, PersistenceContextProducers.class.getPackage())
             .addPackage(SocializeLogger.class.getPackage())
             .addAsResource("test-persistence.xml", "META-INF/persistence.xml")
             .addAsWebResource(new File(WEBSRC, "index.xhtml"))
