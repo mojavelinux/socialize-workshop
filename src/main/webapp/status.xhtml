@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:h="http://java.sun.com/jsf/html"
+   template="/WEB-INF/templates/default.xhtml">
+   <ui:define name="content">
+      <h1>What's happening?</h1>
+
+      <h:messages/>
+      <h:form id="status">
+         <table>
+            <tr>
+               <td>
+                  <h:inputTextarea value="#{status.text}" style="width: 480px; height; 50px;"/>
+               </td>
+            </tr>
+            <tr>
+               <td style="text-align: right;">
+                  Username:
+                  #{identity.user.id}
+                  <ui:remove>
+                  <h:selectOneMenu value="#{status.username}">
+                     <f:selectItem itemValue="mojavelinux"/>
+                     <f:selectItem itemValue="lightguardjp"/>
+                     <f:selectItem itemValue="lincolnthree"/>
+                  </h:selectOneMenu>
+                  </ui:remove>
+                  Url shortener:
+                  <h:selectOneMenu value="#{urlShortenerSelector.selection}">
+                     <f:selectItem itemValue="basic" itemLabel="basic"/>
+                     <f:selectItem itemValue="google" itemLabel="goo.gl"/>
+                  </h:selectOneMenu>
+                  <h:commandButton action="#{statusUpdater.shortenStatus(status)}" value="Shorten"/>
+                  <h:commandButton action="#{statusUpdater.postStatus(status)}" value="Post"/>
+               </td>
+            </tr>
+         </table>
+      </h:form>
+      <h:dataTable var="_status" value="#{latestUpdates}">
+         <h:column>
+            <h:panelGroup>
+               <h3><h:link outcome="/timeline.xhtml" value="#{_status.username}"><f:param name="username" value="#{_status.username}"/></h:link></h3>
+               <p>
+                  #{_status.text}
+                  <br/>
+                  <span style="color: #AAAAAA;">
+                     <h:outputText value="#{_status.created}">
+                        <f:convertDateTime type="both"/>
+                     </h:outputText>
+                  </span>
+               </p>
+            </h:panelGroup>
+         </h:column>
+      </h:dataTable>
+      <h:form id="act">
+         <h:commandButton id="signout" actionListener="#{identity.logout}" action="index" value="Sign out"/>
+      </h:form>
+   </ui:define>
+</ui:composition>

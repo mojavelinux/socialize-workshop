@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:h="http://java.sun.com/jsf/html"
+   template="/WEB-INF/templates/default.xhtml">
+   <ui:define name="content">
+      <h1>Sign in</h1>
+      <p>Don't have an account? <h:link outcome="register" value="Join!"/></p>
+
+      <h:form id="reg">
+         <h:messages globalOnly="true" errorClass="invalid" infoClass="success"/>
+         <table>
+            <tr>
+               <th style="text-align: right;">
+                  <h:outputLabel for="username" value="Username:"/>
+               </th>
+               <td>
+                  <h:inputText id="username" value="#{credentials.username}"/>
+                  <h:message for="username" errorClass="invalid"/>
+               </td>
+            </tr>
+            <tr>
+               <th style="text-align: right;">
+                  <h:outputLabel for="password" value="Password:"/>
+               </th>
+               <td>
+                  <h:inputSecret id="password" value="#{credentials.password}"/>
+                  <h:message for="password" errorClass="invalid"/>
+               </td>
+            </tr>
+         </table>
+         <p>
+            <h:commandButton id="login" action="#{identity.login}" value="Sign In"/>
+         </p>
+      </h:form>
+   </ui:define>
+</ui:composition>

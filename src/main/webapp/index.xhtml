@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:h="http://java.sun.com/jsf/html"
+   template="/WEB-INF/templates/default.xhtml">
+   <ui:define name="content">
+      <h1>Welcome to Socialize!</h1>
+
+      <h:messages globalOnly="true"/>
+
+      <p>The following people are already socializing. Will you <h:link outcome="#{identity.loggedIn ? 'status' : 'register'}">join the conversation</h:link>?</p>
+
+      <h2>Members</h2>
+      <h:panelGroup rendered="#{empty members}">
+         <em>No registered members.</em>
+      </h:panelGroup>
+      <h:dataTable id="members" var="_member" value="#{members}" rendered="#{not empty members}">
+         <h:column>
+            <f:facet name="header">Name</f:facet>
+            #{_member.name}
+         </h:column>
+         <h:column>
+            <f:facet name="header">Username</f:facet>
+            <h:link outcome="timeline" value="#{_member.username}"><f:param name="username" value="#{_member.username}"/></h:link>
+         </h:column>
+         <h:column>
+            <f:facet name="header">Email</f:facet>
+            #{_member.email}
+         </h:column>
+         <h:column>
+            <f:facet name="header">REST URL</f:facet>
+            <a href="#{request.contextPath}/rest/members/#{_member.id}">/rest/members/#{_member.id}</a>
+         </h:column>
+         <f:facet name="footer">
+            REST URL for all members: <a href="#{request.contextPath}/rest/members">/rest/members</a>
+         </f:facet>
+      </h:dataTable>
+   </ui:define>
+</ui:composition>
