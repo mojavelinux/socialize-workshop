@@ -20,12 +20,8 @@ import org.jboss.shrinkwrap.resolver.api.maven.MavenDependencyResolver;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.socialize.account.MemberAuthenticator;
-import com.socialize.account.MemberListProducer;
 import com.socialize.account.Registration;
 import com.socialize.data.PersistenceContextProducers;
-import com.socialize.data.qualifier.Primary;
-import com.socialize.data.qualifier.Utility;
 import com.socialize.domain.Member;
 import com.socialize.support.SocializeLogger;
 import com.thoughtworks.selenium.DefaultSelenium;
@@ -76,6 +72,7 @@ public class RegistrationWebTest {
         driver.type(regForm.locatorForChild("name"), "Ike");
         driver.type(regForm.locatorForChild("username"), "arquillian");
         driver.type(regForm.locatorForChild("password"), "jbosstesting");
+        driver.type(regForm.locatorForChild("confirmPassword"), "jbosstesting");
         driver.type(regForm.locatorForChild("email"), "ike@arquillian.org");
         driver.click(regForm.locatorForChild("register"));
         driver.waitForPageToLoad("15000");
