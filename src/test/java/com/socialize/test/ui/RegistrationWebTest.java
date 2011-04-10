@@ -52,7 +52,7 @@ public class RegistrationWebTest {
             .addAsWebResource(new File(WEBSRC, "register.xhtml"))
             .addAsWebInfResource(new File(WEBSRC, "WEB-INF/templates/default.xhtml"), "templates/default.xhtml")
             .addAsWebResource(new File(WEBSRC, "resources/css/screen.css"), "resources/css/screen.css")
-            .addAsWebResource(new File(WEBSRC, "resources/gfx/banner-socialize.jpg"), "resources/gfx/banner-socialize.jpg")
+            .addAsWebResource(new File(WEBSRC, "resources/gfx/banner.jpg"), "resources/gfx/banner.jpg")
             .addAsWebResource(new File(WEBSRC, "resources/gfx/weld.png"), "resources/gfx/weld.png")
             .addAsWebInfResource(new File(WEBSRC, "WEB-INF/faces-config.xml"))
             .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
